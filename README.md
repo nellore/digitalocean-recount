@@ -1,6 +1,6 @@
 # Duffel
 
-Backend for routing permalinks to real locations of data resources. Used by recount2. Duffel was originally hosted on webfaction using the code at https://github.com/nellore/duffel. After webfaction was eaten by godaddy, the host was switched to digitalocean. This is a fork of the digitalocean sample Flask app incorporating Duffel's code. The sample Flask app's readme is below.
+Duffel creates permalinks to real locations of data resources and logs accesses. It is used by recount2 and was originally hosted on webfaction using the code at https://github.com/nellore/duffel. After webfaction was eaten by godaddy, the host was switched to digitalocean. This is a fork of the digitalocean sample Flask app incorporating Duffel's code. The sample Flask app's readme is below.
 
 # Getting Started #
 
