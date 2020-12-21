@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 duffel.py
 
@@ -69,11 +69,11 @@ def forward(resource, identifier):
     # Log all requests, even weird ones
     ip = str(request.headers.get('X-Forwarded-For',
                         request.remote_addr)).split(',')[0].strip()
-    print >>_LOGSTREAM, '\t'.join(
+    print('\t'.join(
         [time.strftime('%A, %b %d, %Y at %I:%M:%S %p %Z'),
              str(mmh3.hash128(ip + 'recountsalt')),
              resource,
-             identifier])
+             identifier], file=_LOGSTREAM)
     _LOGSTREAM.flush()
     if resource == 'recount':
         # Redirect to IDIES URL in order of descending version
