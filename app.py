@@ -73,8 +73,7 @@ def forward(resource, identifier):
         [time.strftime('%A, %b %d, %Y at %I:%M:%S %p %Z'),
              str(mmh3.hash128(ip + 'recountsalt')),
              resource,
-             identifier], file=_LOGSTREAM)
-    _LOGSTREAM.flush()
+             identifier], file=_LOGSTREAM, flush=True)
     if resource == 'recount':
         # Redirect to IDIES URL in order of descending version
         for i in ['2']: # add versions to precede 2 as they are released
