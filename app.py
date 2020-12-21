@@ -43,7 +43,7 @@ _LOGFILE = os.path.join(_LOGDIR,
         filename_number=new_filename_number,
         rando='{rando}'.format(rando=random.random())[2:]
     ))
-_LOGSTREAM = gzip.open(_LOGFILE, 'a')
+_LOGSTREAM = gzip.open(_LOGFILE, 'at')
 def close_log():
     """ Closes log stream; for use on script exit.
 
