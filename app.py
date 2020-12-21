@@ -24,6 +24,7 @@ app = Flask(__name__)
 # DO NOT TRACK IPs/LOCATIONS; track only times
 # Always open new logfile when restarting
 _LOGDIR = os.path.expanduser('~/recount2_logs')
+os.makedirs(_LOGDIR, exist_ok=True)
 filename_numbers = []
 for filename_number in [filename.split('.')[1] for filename
     in os.listdir(_LOGDIR) if 'recount_log' in filename]:
