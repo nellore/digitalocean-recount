@@ -75,7 +75,14 @@ def forward(resource, identifier):
              str(mmh3.hash128(ip + 'recountsalt')),
              resource,
              identifier]), file=_LOGSTREAM, flush=True)
-    if resource == 'recount':
+    if resource == 'recount3':
+        idies_url = '/'.join(
+                        ['http://idies.jhu.edu/recount3/data', identifier]
+                    )
+        idies_response = requests.head(idies_url)
+        if idies_response.status_code == 200:
+            return redirect(idies_url, code=302)
+    elif resource == 'recount':
         # Redirect to IDIES URL in order of descending version
         for i in ['2']: # add versions to precede 2 as they are released
             if identifier.startswith(' '.join(['v', i, '/'])):
