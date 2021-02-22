@@ -1,6 +1,8 @@
-# Duffel
+# recount landing page
 
-Duffel creates permalinks to real locations of data resources and logs accesses. It is used by recount2 and was originally hosted on webfaction using the code at https://github.com/nellore/duffel. After webfaction was eaten by godaddy, the host was switched to digitalocean. This is a fork of the digitalocean sample Flask app incorporating Duffel's code. The sample Flask app's readme is below.
+A simple web app for displaying recount's landing page while accommodating old recount URLs.
+
+This is a fork of the digitalocean sample Flask app. The sample Flask app's readme is below.
 
 # Getting Started #
 
