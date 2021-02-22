@@ -59,7 +59,7 @@ def recountwebsite():
 
 @app.route('/<resource>/<path:identifier>')
 @app.route('/<resource>/')
-def forward(resource, identifier):
+def forward(resource, identifier=''):
     """ Redirects request for file to direct URL.
 
         Requires global "paths" dictionary is active. 
@@ -76,13 +76,12 @@ def forward(resource, identifier):
         [time.strftime('%A, %b %d, %Y at %I:%M:%S %p %Z'),
              str(mmh3.hash128(ip + 'recountsalt')),
              resource,
-             identifier if identifier is not None else '']),
+             identifier]),
              file=_LOGSTREAM, flush=True)
     if resource == 'data':
         recdata_url = '/'.join(
                         ['http://methylation.recount.bio',
-                          identifier if identifier is not None
-                          else '']
+                          identifier]
                     )
         recdata_response = requests.head(recdata_url)
         if recdata_response.status_code == 200:
