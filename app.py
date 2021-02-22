@@ -56,7 +56,8 @@ atexit.register(close_log)
 def recountwebsite():
     return app.send_static_file('index.html')
 
-@app.route('/<resource>/<path:identifier>')
+@app.route('/resource/')
+@app.route('/resource/<path:identifier>')
 def forward(resource, identifier):
     """ Redirects request for file to direct URL.
 
@@ -74,10 +75,13 @@ def forward(resource, identifier):
         [time.strftime('%A, %b %d, %Y at %I:%M:%S %p %Z'),
              str(mmh3.hash128(ip + 'recountsalt')),
              resource,
-             identifier]), file=_LOGSTREAM, flush=True)
+             identifier if identifier is not None else '']),
+             file=_LOGSTREAM, flush=True)
     if resource == 'data':
         recdata_url = '/'.join(
-                        ['http://methylation.recount.bio', identifier]
+                        ['http://methylation.recount.bio',
+                          identifier if identifier is not None
+                          else '']
                     )
         recdata_response = requests.head(recdata_url)
         if recdata_response.status_code == 200:
