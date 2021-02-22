@@ -1,0 +1,171 @@
+body {
+	background-color: rgb(240, 240, 240);
+}
+
+@keyframes first { 
+    0% {
+        opacity: 100%;
+    }
+
+    25% { 
+        opacity: 100%;
+    } 
+
+    50% { 
+        opacity: 25%;
+    } 
+
+    75% { 
+        opacity: 25%;
+    }
+    to {
+    	opacity: 25%;
+    }
+}
+#over {
+	margin: auto;
+	max-width: 1000px;
+}
+
+@keyframes second { 
+  
+  	0% {
+  		display: none;
+        opacity: 0%;
+    }
+
+    25% { 
+        opacity: 0%;
+    } 
+
+    50% { 
+        opacity: 100%;
+    } 
+
+    75% { 
+        opacity: 25%;
+    } 
+    to {
+    	opacity: 25%;
+    }
+}
+
+@keyframes third { 
+  
+  	0% {
+  		display: none;
+        opacity: 0%;
+    }
+
+    25% { 
+        opacity: 0%;
+    } 
+
+    50% { 
+        opacity: 0%;
+    } 
+
+    75% { 
+        opacity: 100%;
+    } 
+
+    to {
+    	opacity: 25%;
+    }
+}
+
+@keyframes final { 
+  
+  	0% {
+  		display: none;
+        opacity: 0%;
+    }
+
+    25% { 
+        opacity: 0%;
+    } 
+
+    50% { 
+        opacity: 0%;
+    } 
+
+    75% { 
+        opacity: 0%;
+    }
+    to {
+    	opacity: 100%;
+    }
+}
+
+.fa-dna {
+	opacity: 25%;
+	animation-duration: 1.5s;
+	animation-name: first;
+	font-size: 300%;
+	letter-spacing: 0.7em;
+	color: rgb(255, 66, 161);
+}
+
+.fa-chart-line {
+	opacity: 25%;
+	animation-duration: 1.5s;
+	animation-name: second;
+	font-size: 300%;
+	letter-spacing: 0.7em;
+	color: rgb(96, 217, 55);
+}
+
+.fa-search {
+	opacity: 25%;
+	animation-duration: 1.5s;
+	animation-name: third;
+	font-size: 300%;
+	letter-spacing: 0.7em;
+	color: rgb(0, 161, 255);
+}
+
+#container {
+	height: 1em;
+	position: relative;
+	top: .5em;
+	left: 1.3em;
+}
+
+#symbols, #content {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+  	top: 0;
+  	left: 0;
+}
+
+#content {
+	top: -0.4em;
+	left: -0.1em;
+	word-wrap: break-word;
+	font-family: "Arial";
+	line-height: 1.5;
+	text-align: justify;
+}
+
+#word {
+	z-index: 10;
+	animation-duration: 1.5s;
+	animation-name: final;
+	font-family: "Courier";
+	font-size: 250%;
+	letter-spacing: 0.2em;
+	color: rgb(30, 30, 30);
+}
+
+a {
+	color: rgb(255, 66, 161);
+	text-decoration: none;
+}
+
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}

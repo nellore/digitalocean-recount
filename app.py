@@ -23,11 +23,11 @@ app = Flask(__name__)
 # Path to log file is hardcoded
 # DO NOT TRACK IPs/LOCATIONS; track only times
 # Always open new logfile when restarting
-_LOGDIR = os.path.expanduser('~/recount2_logs')
+_LOGDIR = os.path.expanduser('~/recount3_logs')
 os.makedirs(_LOGDIR, exist_ok=True)
 filename_numbers = []
 for filename_number in [filename.split('.')[1] for filename
-    in os.listdir(_LOGDIR) if 'recount_log' in filename]:
+    in os.listdir(_LOGDIR) if 'recount3_log' in filename]:
     try:
         filename_numbers.append(int(filename_number))
     except ValueError:
@@ -39,7 +39,7 @@ except ValueError:
     # Starting from 0 here
     new_filename_number = 0
 _LOGFILE = os.path.join(_LOGDIR,
-        'recount_log.{filename_number}.{rando}.tsv.gz'.format(
+        'recount3_log.{filename_number}.{rando}.tsv.gz'.format(
         filename_number=new_filename_number,
         rando='{rando}'.format(rando=random.random())[2:]
     ))
@@ -53,8 +53,8 @@ def close_log():
 atexit.register(close_log)
 
 @app.route('/')
-def duffout():
-    return "Duffel is your friendly neighborhood data broker."
+def recountwebsite():
+    return app.send_static_file('index.html')
 
 @app.route('/<resource>/<path:identifier>')
 def forward(resource, identifier):
@@ -75,28 +75,13 @@ def forward(resource, identifier):
              str(mmh3.hash128(ip + 'recountsalt')),
              resource,
              identifier]), file=_LOGSTREAM, flush=True)
-    if resource == 'recount3':
-        idies_url = '/'.join(
-                        ['http://idies.jhu.edu/recount3/data', identifier]
+    if resource == 'data':
+        recdata_url = '/'.join(
+                        ['http://methylation.recount.bio', identifier]
                     )
-        idies_response = requests.head(idies_url)
-        if idies_response.status_code == 200:
-            return redirect(idies_url, code=302)
-    elif resource == 'recount':
-        # Redirect to IDIES URL in order of descending version
-        for i in ['2']: # add versions to precede 2 as they are released
-            if identifier.startswith(' '.join(['v', i, '/'])):
-                idies_url = '/'.join(
-                            ['http://idies.jhu.edu/recount/data', identifier]
-                        )
-                idies_response = requests.head(idies_url)
-                if idies_response.status_code == 200:
-                    return redirect(idies_url, code=302)
-        # v1 is not explicitly versioned
-        idies_url = '/'.join(['http://idies.jhu.edu/recount/data', identifier])
-        idies_response = requests.head(idies_url)
-        if idies_response.status_code == 200:
-            return redirect(idies_url, code=302)
+        recdata_response = requests.head(recdata_url)
+        if recdata_response.status_code == 200:
+            return redirect(recdata_url, code=302)
     abort(404)
 
 if __name__ == '__main__':
