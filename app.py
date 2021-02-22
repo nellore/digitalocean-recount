@@ -57,8 +57,8 @@ atexit.register(close_log)
 def recountwebsite():
     return app.send_static_file('index.html')
 
-@app.route('/<resource>/<path:identifier>')
 @app.route('/<resource>/')
+@app.route('/<resource>/<path:identifier>')
 def forward(resource, identifier=''):
     """ Redirects request for file to direct URL.
 
