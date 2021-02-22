@@ -78,6 +78,7 @@ def forward(resource, identifier=''):
              resource,
              identifier]),
              file=_LOGSTREAM, flush=True)
+    print(resource, file=sys.stderr)
     if resource == 'data':
         recdata_url = '/'.join(
                         ['http://methylation.recount.bio',
